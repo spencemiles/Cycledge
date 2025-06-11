@@ -630,17 +630,400 @@
                 
                 <div class="form-group">
                     <label>Gender</label>
-                    <div class="radio-group">
-                        <label>
-                            <input type="radio" name="gender" value="Male" required> Male
-                        </label>
-                        <label>
-                            <input type="radio" name="gender" value="Female"> Female
-                        </label>
-                        <label>
-                            <input type="radio" name="gender" value="Other"> Other
-                        </label>
-                    </div>
+                    <div class="gender-selection-container">
+  <style>
+    .gender-selection-container {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 30px;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+    }
+    
+    .gender-header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    .gender-header h2 {
+      color: #2c3e50;
+      font-size: 2.4rem;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .gender-header h2::after {
+      content: "";
+      position: absolute;
+      bottom: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 5px;
+      background: linear-gradient(90deg, #3498db, #9b59b6);
+      border-radius: 3px;
+    }
+    
+    .gender-header p {
+      color: #7f8c8d;
+      font-size: 1.2rem;
+      margin-top: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    
+    .gender-icons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin: 40px 0;
+    }
+    
+    .gender-icon {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      font-size: 2.5rem;
+      transition: all 0.4s ease;
+    }
+    
+    .gender-icon.male {
+      color: #3498db;
+      border: 3px solid #3498db;
+    }
+    
+    .gender-icon.female {
+      color: #e74c3c;
+      border: 3px solid #e74c3c;
+    }
+    
+    .gender-icon.other {
+      color: #9b59b6;
+      border: 3px solid #9b59b6;
+    }
+    
+    .radio-group {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .radio-group label {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      padding: 25px 20px;
+      border-radius: 16px;
+      background: white;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 2px solid #e0e3e6;
+      flex: 1;
+      text-align: center;
+      min-height: 180px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .radio-group label:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      border-color: #3498db;
+    }
+    
+    .radio-group label::before {
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid #bdc3c7;
+      transition: all 0.3s ease;
+    }
+    
+    .radio-group input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+    
+    .radio-group input[type="radio"]:checked ~ label {
+      background: #f8fbfe;
+      border-color: #3498db;
+      box-shadow: 0 10px 25px rgba(52, 152, 219, 0.2);
+      transform: translateY(-5px);
+    }
+    
+    .radio-group input[type="radio"]:checked ~ label::before {
+      border-color: #3498db;
+      background: #3498db;
+      box-shadow: inset 0 0 0 5px white;
+    }
+    
+    .radio-group label i {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      transition: all 0.3s ease;
+    }
+    
+    .radio-group label span {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #2c3e50;
+      transition: color 0.3s ease;
+    }
+    
+    .radio-group input[type="radio"]:checked ~ label i,
+    .radio-group input[type="radio"]:checked ~ label span {
+      color: #3498db;
+    }
+    
+    .radio-group input[type="radio"]:checked ~ label.male {
+      background: #e1f5fe;
+      border-color: #29b6f6;
+    }
+    
+    .radio-group input[type="radio"]:checked ~ label.male::before {
+      border-color: #29b6f6;
+      background: #29b6f6;
+    }
+    
+    .radio-group input[type="radio"]:checked ~ label.male i,
+    .radio-group input[type="radio"]:checked ~ label.male span {
+      color: #29b6f6;
+    }
+    
+    .radio-group input[type="radio"]:checked ~ label.female {
+      background: #fce4ec;
+      border-color: #ec407a;
+    }
+    
+    .radio-group input[type="radio"]:checked ~ label.female::before {
+      border-color: #ec407a;
+      background: #ec407a;
+    }
+    
+    .radio-group input[type="radio"]:checked ~ label.female i,
+    .radio-group input[type="radio"]:checked ~ label.female span {
+      color: #ec407a;
+    }
+    
+    .radio-group input[type="radio"]:checked ~ label.other {
+      background: #f3e5f5;
+      border-color: #9b59b6;
+    }
+    
+    .radio-group input[type="radio"]:checked ~ label.other::before {
+      border-color: #9b59b6;
+      background: #9b59b6;
+    }
+    
+    .radio-group input[type="radio"]:checked ~ label.other i,
+    .radio-group input[type="radio"]:checked ~ label.other span {
+      color: #9b59b6;
+    }
+    
+    .btn-container {
+      text-align: center;
+      margin-top: 30px;
+    }
+    
+    .btn {
+      background: linear-gradient(45deg, #3498db, #2980b9);
+      color: white;
+      border: none;
+      padding: 18px 50px;
+      font-size: 1.3rem;
+      font-weight: 600;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(52, 152, 219, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 25px rgba(52, 152, 219, 0.45);
+      background: linear-gradient(45deg, #2980b9, #3498db);
+    }
+    
+    .btn:active {
+      transform: translateY(1px);
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .radio-group {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .gender-icons {
+        gap: 15px;
+        margin: 30px 0;
+      }
+      
+      .gender-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+      }
+      
+      .gender-header h2 {
+        font-size: 2rem;
+      }
+      
+      .gender-header p {
+        font-size: 1.1rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .gender-selection-container {
+        padding: 20px;
+      }
+      
+      .gender-header h2 {
+        font-size: 1.8rem;
+      }
+      
+      .radio-group label {
+        padding: 20px 15px;
+        min-height: 150px;
+      }
+      
+      .radio-group label i {
+        font-size: 3rem;
+        margin-bottom: 15px;
+      }
+      
+      .radio-group label span {
+        font-size: 1.2rem;
+      }
+      
+      .btn {
+        padding: 16px 40px;
+        font-size: 1.2rem;
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .gender-icons {
+        gap: 10px;
+      }
+      
+      .gender-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+    }
+    
+    /* Animations */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .gender-icon.male {
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    .gender-icon.female {
+      animation: float 4s ease-in-out infinite 0.5s;
+    }
+    
+    .gender-icon.other {
+      animation: float 4s ease-in-out infinite 1s;
+    }
+  </style>
+  
+  <div class="gender-header">
+    <h2>Select Your Gender</h2>
+    <p>Your selection helps us provide a personalized experience. All options are respected and confidential.</p>
+    
+    <div class="gender-icons">
+      <div class="gender-icon male">
+        <i class="fas fa-mars"></i>
+      </div>
+      <div class="gender-icon female">
+        <i class="fas fa-venus"></i>
+      </div>
+      <div class="gender-icon other">
+        <i class="fas fa-genderless"></i>
+      </div>
+    </div>
+  </div>
+  
+  <div class="radio-group">
+    <input type="radio" id="male" name="gender" value="Male" required>
+    <label for="male" class="male">
+      <i class="fas fa-mars"></i>
+      <span>Male</span>
+    </label>
+    
+    <input type="radio" id="female" name="gender" value="Female">
+    <label for="female" class="female">
+      <i class="fas fa-venus"></i>
+      <span>Female</span>
+    </label>
+    
+    <input type="radio" id="other" name="gender" value="Other">
+    <label for="other" class="other">
+      <i class="fas fa-genderless"></i>
+      <span>Other</span>
+    </label>
+  </div>
+  
+  <div class="btn-container">
+    <button class="btn">
+      <i class="fas fa-arrow-right"></i> Continue
+    </button>
+  </div>
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add animation to radio buttons on selection
+      const radioInputs = document.querySelectorAll('input[type="radio"]');
+      
+      radioInputs.forEach(input => {
+        input.addEventListener('change', function() {
+          const allLabels = document.querySelectorAll('.radio-group label');
+          allLabels.forEach(label => {
+            label.style.transform = '';
+            label.style.boxShadow = '';
+          });
+          
+          if (this.checked) {
+            const label = this.nextElementSibling;
+            label.style.transform = 'translateY(-10px)';
+            label.style.boxShadow = '0 20px 35px rgba(0, 0, 0, 0.15)';
+          }
+        });
+      });
+    });
+  </script>
+</div>
                     <div class="error-message" id="genderError">Please select your gender</div>
                 </div>
                 
