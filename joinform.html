@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Our Bike Affiliate Program - Kenya</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --kenya-red: #DE2910;
+            --kenya-green: #006600;
+            --kenya-black: #000000;
+            --kenya-white: #FFFFFF;
+            --kenya-gold: #FFC72C;
+            --primary: #006837;
+            --secondary: #F9A825;
+            --accent: #C62828;
+            --light: #f5f5f5;
+            --dark: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, rgba(0, 104, 55, 0.1) 0%, rgba(249, 168, 37, 0.1) 100%), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f5f5f5"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23f0f0f0" stroke-width="1"/></svg>');
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            display: flex;
+            max-width: 1200px;
+            width: 100%;
+            background: var(--kenya-white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .banner {
+            flex: 1;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="%23006600" opacity="0.3"/><path d="M0,100 Q50,150 100,100 T200,100" stroke="%23DE2910" stroke-width="4" fill="none"/><path d="M0,100 Q50,50 100,100 T200,100" stroke="%23FFC72C" stroke-width="4" fill="none"/><circle cx="100" cy="100" r="30" fill="%23DE2910" opacity="0.5"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: var(--kenya-white);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .banner::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--kenya-black), var(--kenya-red), var(--kenya-green), var(--kenya-white), var(--kenya-gold));
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 2;
+            animation: slideInLeft 1s ease-out;
+        }
+        
+        .banner h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--kenya-gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .banner p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+        
+        .features {
+            list-style: none;
+            margin-top: 30px;
+        }
+        
+        .features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 1rem;
+        }
+        
+        .features li i {
+            color: var(--kenya-gold);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .bike-icon {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 5rem;
+            color: rgba(255, 255, 255, 0.2);
+            animation: bikeMove 8s linear infinite;
+        }
+        
+        .form-container {
+            flex: 1;
+            padding: 40px;
+            background: var(--kenya-white);
+            position: relative;
+        }
+        
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .form-header h2 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .form-header p {
+            color: var(--dark);
+            font-size: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            animation: fadeInUp 0.5s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .form-group:nth-child(1) { animation-delay: 0.2s; }
+        .form-group:nth-child(2) { animation-delay: 0.3s; }
+        .form-group:nth-child(3) { animation-delay: 0.4s; }
+        .form-group:nth-child(4) { animation-delay: 0.5s; }
+        .form-group:nth-child(5) { animation-delay: 0.6s; }
+        .form-group:nth-child(6) { animation-delay: 0.7s; }
+        .form-group:nth-child(7) { animation-delay: 0.8s; }
+        .form-group:nth-child(8) { animation-delay: 0.9s; }
+        .form-group:nth-child(9) { animation-delay: 1.0s; }
+        .form-group:nth-child(10) { animation-delay: 1.1s; }
+        .form-group:nth-child(11) { animation-delay: 1.2s; }
+        .form-group:nth-child(12) { animation-delay: 1.3s; }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 104, 55, 0.2);
+            outline: none;
+        }
+        
+        .password-container {
+            position: relative;
+        }
+        
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 10px;
+        }
+        
+        .checkbox-group input {
+            width: auto;
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+        
+        .checkbox-group label {
+            font-weight: normal;
+            margin-bottom: 0;
+        }
+        
+        .btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: pulse 2s infinite;
+        }
+        
+        .btn:hover {
+            background: #004d29;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--dark);
+        }
+        
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .footer a:hover {
+            color: var(--accent);
+            text-decoration: underline;
+        }
+        
+        .kenya-pattern {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 100px;
+            height: 60px;
+            background: 
+                linear-gradient(180deg, 
+                    var(--kenya-black) 0 25%, 
+                    var(--kenya-red) 25% 50%, 
+                    var(--kenya-green) 50% 75%, 
+                    white 75% 100%);
+            opacity: 0.1;
+            border-radius: 5px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes bikeMove {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 104, 55, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(0, 104, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 104, 55, 0); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .banner {
+                padding: 30px 20px;
+            }
+            
+            .banner h1 {
+                font-size: 2rem;
+            }
+            
+            .form-container {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .form-container {
+                padding: 20px;
+            }
+            
+            .form-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            input, select {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="banner">
+            <div class="banner-content">
+                <h1>Join Our Bike Affiliate Program</h1>
+                <p>Earn money by promoting our premium bikes across Kenya. Sign up to get started and become part of Kenya's cycling revolution!</p>
+                
+                <ul class="features">
+                    <li><i class="fas fa-check-circle"></i> Earn competitive commissions on every sale</li>
+                    <li><i class="fas fa-check-circle"></i> Get exclusive access to new bike models</li>
+                    <li><i class="fas fa-check-circle"></i> Receive marketing materials and training</li>
+                    <li><i class="fas fa-check-circle"></i> Join a community of passionate cyclists</li>
+                    <li><i class="fas fa-check-circle"></i> Intant payout via M-Pesa or bank transfer</li>
+                </ul>
+            </div>
+            <div class="bike-icon">
+                <i class="fas fa-bicycle"></i>
+            </div>
+        </div>
+        
+        <div class="form-container">
+            <div class="form-header">
+                <h2>Create Your Account</h2>
+                <p>Fill in your details to join our affiliate program</p>
+            </div>
+            
+            <form id="signupForm" action="https://formspree.io/f/mkgbjdnw" method="POST">
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" required placeholder="Enter your full name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="nationalId">National ID Number</label>
+                    <input type="text" id="nationalId" name="nationalId" required placeholder="Enter your Kenyan ID number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="dob" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required pattern="^\+254[17]\d{8}$" placeholder="+2547XXXXXXXX">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="Enter your email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="county">County of Residence</label>
+                    <select id="county" name="county" required>
+                        <option value="">Select your county</option>
+                        <option value="Nairobi">Nairobi</option>
+                        <option value="Mombasa">Mombasa</option>
+                        <option value="Kisumu">Kisumu</option>
+                        <option value="Nakuru">Nakuru</option>
+                        <option value="Eldoret">Eldoret</option>
+                        <option value="Kakamega">Kakamega</option>
+                        <option value="Kisii">Kisii</option>
+                        <option value="Meru">Meru</option>
+                        <option value="Tharaka-Nithi">Tharaka-Nithi</option>
+                        <option value="Kiambu">Kiambu</option>
+                        <!-- Additional counties would be listed here -->
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div style="display: flex; gap: 15px; margin-top: 8px;">
+                        <label style="display: flex; align-items: center;">
+                            <input type="radio" name="gender" value="Male" required> Male
+                        </label>
+                        <label style="display: flex; align-items: center;">
+                            <input type="radio" name="gender" value="Female"> Female
+                        </label>
+                        <label style="display: flex; align-items: center;">
+                            <input type="radio" name="gender" value="Other"> Other
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="socialMedia">Preferred Social Media Platform</label>
+                    <select id="socialMedia" name="socialMedia" required>
+                        <option value="">Select platform</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="TikTok">TikTok</option>
+                        <option value="Twitter">X (Twitter)</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="profileLink">Link to your Social Media Profile</label>
+                    <input type="url" id="profileLink" name="profileLink" required placeholder="https://yourprofile.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="password-container">
+                        <input type="password" id="password" name="password" required minlength="8" placeholder="Create a password">
+                        <span class="toggle-password" onclick="togglePassword('password')">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <div class="password-container">
+                        <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+                        <span class="toggle-password" onclick="togglePassword('confirmPassword')">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <label for="terms">I confirm I am 18 years or older and agree to the <a href="#">terms</a> and <a href="#">privacy policy</a></label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn">Join the Program</button>
+            </form>
+            
+          
+            
+            <div class="kenya-pattern"></div>
+        </div>
+    </div>
+
+    <script>
+        // Set max date for DOB (18 years ago)
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date();
+            const minDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
+            const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+            
+            document.getElementById('dob').max = maxDate.toISOString().split('T')[0];
+            document.getElementById('dob').min = minDate.toISOString().split('T')[0];
+        });
+        
+        // Toggle password visibility
+        function togglePassword(fieldId) {
+            const passwordField = document.getElementById(fieldId);
+            const toggleIcon = passwordField.nextElementSibling.querySelector('i');
+            
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        }
+        
+        // Form validation
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                e.preventDefault();
+                alert('Passwords do not match!');
+                document.getElementById('password').focus();
+            }
+            
+            // Phone number validation
+            const phone = document.getElementById('phone').value;
+            const phonePattern = /^\+254[17]\d{8}$/;
+            
+            if (!phonePattern.test(phone)) {
+                e.preventDefault();
+                alert('Please enter a valid Kenyan phone number in the format +2547XXXXXXXX');
+                document.getElementById('phone').focus();
+            }
+        });
+        
+        // Add animation to form elements as they appear
+        document.querySelectorAll('.form-group').forEach((el, index) => {
+            el.style.animationDelay = `${0.2 + (index * 0.1)}s`;
+        });
+    </script>
+</body>
+</html>
