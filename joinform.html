@@ -27,24 +27,52 @@
         }
         
         body {
-            background: linear-gradient(135deg, rgba(0, 104, 55, 0.1) 0%, rgba(249, 168, 37, 0.1) 100%), 
-                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f5f5f5"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23f0f0f0" stroke-width="1"/></svg>');
-            background-size: cover;
+            margin: 0;
+            padding: 20px;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            background: linear-gradient(135deg, rgba(0, 104, 55, 0.1) 0%, rgba(249, 168, 37, 0.1) 100%);
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.25;
         }
         
         .container {
             display: flex;
             max-width: 1200px;
             width: 100%;
-            background: var(--kenya-white);
+            background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
             overflow: hidden;
             box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease-out;
+            backdrop-filter: blur(10px);
         }
         
         .banner {
@@ -70,11 +98,13 @@
             width: 100%;
             height: 10px;
             background: linear-gradient(90deg, var(--kenya-black), var(--kenya-red), var(--kenya-green), var(--kenya-white), var(--kenya-gold));
+            animation: colorSlide 15s infinite linear;
         }
         
         .banner-content {
             position: relative;
             z-index: 2;
+            animation: slideInLeft 0.8s ease-out;
         }
         
         .banner h1 {
@@ -82,6 +112,7 @@
             margin-bottom: 20px;
             color: var(--kenya-gold);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: pulse 2s infinite;
         }
         
         .banner p {
@@ -101,20 +132,61 @@
             display: flex;
             align-items: center;
             font-size: 1rem;
+            opacity: 0;
+            animation: fadeIn 0.6s forwards;
         }
+        
+        .features li:nth-child(1) { animation-delay: 0.4s; }
+        .features li:nth-child(2) { animation-delay: 0.6s; }
+        .features li:nth-child(3) { animation-delay: 0.8s; }
+        .features li:nth-child(4) { animation-delay: 1.0s; }
+        .features li:nth-child(5) { animation-delay: 1.2s; }
         
         .features li i {
             color: var(--kenya-gold);
             margin-right: 10px;
             font-size: 1.2rem;
+            animation: spin 3s infinite linear;
         }
         
-        .bike-icon {
+        /* Vector decorations */
+        .vector-decor {
             position: absolute;
-            bottom: 20px;
-            right: 20px;
-            font-size: 5rem;
-            color: rgba(255, 255, 255, 0.2);
+            z-index: 0;
+            opacity: 0.3;
+        }
+        
+        .vector-bike-1 {
+            top: 10%;
+            left: 5%;
+            width: 80px;
+            height: 80px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .vector-bike-2 {
+            bottom: 15%;
+            right: 5%;
+            width: 60px;
+            height: 60px;
+            animation: float 8s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+        
+        .vector-gear {
+            top: 30%;
+            right: 10%;
+            width: 50px;
+            height: 50px;
+            animation: spin 15s infinite linear;
+        }
+        
+        .vector-wheel {
+            bottom: 20%;
+            left: 15%;
+            width: 40px;
+            height: 40px;
+            animation: spin 20s infinite linear reverse;
         }
         
         .form-container {
@@ -122,17 +194,22 @@
             padding: 40px;
             background: var(--kenya-white);
             position: relative;
+            overflow: hidden;
+            animation: slideInRight 0.8s ease-out;
         }
         
         .form-header {
             text-align: center;
             margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
         }
         
         .form-header h2 {
             color: var(--primary);
             font-size: 2rem;
             margin-bottom: 10px;
+            animation: colorShift 8s infinite alternate;
         }
         
         .form-header p {
@@ -142,6 +219,13 @@
         
         .form-group {
             margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+        
+        .form-group:hover {
+            transform: translateX(5px);
         }
         
         label {
@@ -158,12 +242,14 @@
             border-radius: 8px;
             font-size: 1rem;
             transition: all 0.3s;
+            background: rgba(245, 245, 245, 0.7);
         }
         
         input:focus, select:focus {
             border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(0, 104, 55, 0.2);
             outline: none;
+            transform: scale(1.02);
         }
         
         .password-container {
@@ -177,6 +263,11 @@
             transform: translateY(-50%);
             cursor: pointer;
             color: #777;
+            transition: color 0.3s;
+        }
+        
+        .toggle-password:hover {
+            color: var(--primary);
         }
         
         .radio-group {
@@ -191,6 +282,11 @@
             gap: 8px;
             font-weight: normal;
             cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .radio-group label:hover {
+            transform: scale(1.05);
         }
         
         .checkbox-group {
@@ -213,7 +309,7 @@
         .btn {
             width: 100%;
             padding: 16px;
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary), var(--kenya-green));
             color: white;
             border: none;
             border-radius: 8px;
@@ -226,12 +322,31 @@
             justify-content: center;
             align-items: center;
             gap: 10px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+            z-index: -1;
         }
         
         .btn:hover {
-            background: #004d29;
+            background: linear-gradient(135deg, var(--kenya-green), var(--primary));
             transform: translateY(-3px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
         }
         
         .error-message {
@@ -239,14 +354,15 @@
             font-size: 0.9rem;
             margin-top: 5px;
             display: none;
+            animation: shake 0.5s;
         }
         
         .success-message {
             position: fixed;
             top: 20px;
             right: 20px;
-            background: #00ff88;
-            color: #000;
+            background: linear-gradient(135deg, #00c853, #009624);
+            color: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -256,9 +372,59 @@
             animation: fadeIn 0.5s ease;
         }
         
+        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes colorSlide {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 0%; }
+        }
+        
+        @keyframes colorShift {
+            0% { color: var(--primary); }
+            50% { color: var(--kenya-green); }
+            100% { color: var(--secondary); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-5px); }
+            40%, 80% { transform: translateX(5px); }
         }
         
         /* Responsive Design */
@@ -278,15 +444,53 @@
             .form-container {
                 padding: 30px;
             }
+            
+            .vector-decor {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                border-radius: 15px;
+            }
+            
+            .banner h1 {
+                font-size: 1.8rem;
+            }
+            
+            .banner p {
+                font-size: 1rem;
+            }
+            
+            .features li {
+                font-size: 0.95rem;
+            }
+            
+            .form-container {
+                padding: 25px;
+            }
+            
+            .form-header h2 {
+                font-size: 1.8rem;
+            }
         }
         
         @media (max-width: 576px) {
+            .banner {
+                padding: 25px 15px;
+            }
+            
             .form-container {
                 padding: 20px;
             }
             
             .form-header h2 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
             
             input, select {
@@ -297,10 +501,30 @@
                 flex-direction: column;
                 gap: 10px;
             }
+            
+            .btn {
+                padding: 14px;
+                font-size: 1rem;
+            }
+            
+            .success-message {
+                max-width: 90%;
+                left: 5%;
+                right: 5%;
+                top: auto;
+                bottom: 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Video Background -->
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-close-view-of-a-bicycle-wheel-spinning-854-large.mp4" type="video/mp4">
+        </video>
+    </div>
+    
     <div class="container">
         <div class="banner">
             <div class="banner-content">
@@ -315,12 +539,41 @@
                     <li><i class="fas fa-check-circle"></i> Instant payout via M-Pesa or bank transfer</li>
                 </ul>
             </div>
-            <div class="bike-icon">
-                <i class="fas fa-bicycle"></i>
-            </div>
+            
+            <!-- Vector Decorations -->
+            <svg class="vector-decor vector-bike-1" viewBox="0 0 100 100">
+                <path d="M40,60 Q50,40 60,60" stroke="#FFC72C" stroke-width="3" fill="none"/>
+                <circle cx="30" cy="70" r="10" stroke="#FFC72C" stroke-width="2" fill="none"/>
+                <circle cx="70" cy="70" r="10" stroke="#FFC72C" stroke-width="2" fill="none"/>
+                <path d="M40,60 L50,50 L60,60" stroke="#FFC72C" stroke-width="3" fill="none"/>
+            </svg>
+            
+            <svg class="vector-decor vector-gear" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" stroke="#FFFFFF" stroke-width="4" fill="none"/>
+                <circle cx="50" cy="50" r="8" stroke="#FFFFFF" stroke-width="2" fill="none"/>
+                <path d="M50,10 L50,30 M50,70 L50,90 M10,50 L30,50 M70,50 L90,50" stroke="#FFFFFF" stroke-width="4"/>
+                <path d="M25,25 L35,35 M65,65 L75,75 M25,75 L35,65 M65,35 L75,25" stroke="#FFFFFF" stroke-width="4"/>
+            </svg>
         </div>
         
         <div class="form-container">
+            <!-- Vector Decorations for Form -->
+            <svg class="vector-decor vector-bike-2" viewBox="0 0 100 100">
+                <path d="M30,70 Q40,50 50,70" stroke="#006837" stroke-width="3" fill="none"/>
+                <circle cx="25" cy="75" r="8" stroke="#006837" stroke-width="2" fill="none"/>
+                <circle cx="55" cy="75" r="8" stroke="#006837" stroke-width="2" fill="none"/>
+                <path d="M30,70 L40,60 L50,70" stroke="#006837" stroke-width="3" fill="none"/>
+            </svg>
+            
+            <svg class="vector-decor vector-wheel" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="20" stroke="#F9A825" stroke-width="3" fill="none"/>
+                <circle cx="50" cy="50" r="5" stroke="#F9A825" stroke-width="2" fill="none"/>
+                <line x1="50" y1="30" x2="50" y2="70" stroke="#F9A825" stroke-width="2"/>
+                <line x1="30" y1="50" x2="70" y2="50" stroke="#F9A825" stroke-width="2"/>
+                <line x1="38" y1="38" x2="62" y2="62" stroke="#F9A825" stroke-width="2"/>
+                <line x1="38" y1="62" x2="62" y2="38" stroke="#F9A825" stroke-width="2"/>
+            </svg>
+            
             <div class="form-header">
                 <h2>Create Your Account</h2>
                 <p>Fill in your details to join our affiliate program</p>
@@ -458,6 +711,12 @@
             const today = new Date();
             const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
             document.getElementById('dob').max = maxDate.toISOString().split('T')[0];
+            
+            // Animate features list
+            const featureItems = document.querySelectorAll('.features li');
+            featureItems.forEach(item => {
+                item.style.display = 'flex';
+            });
             
             // Form submission handler
             document.getElementById('signupForm').addEventListener('submit', function(e) {
